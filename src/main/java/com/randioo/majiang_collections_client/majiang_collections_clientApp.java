@@ -40,7 +40,6 @@ public class majiang_collections_clientApp {
 
         SpringContext.initSpringCtx("ApplicationContext.xml");
         List<Class<?>> clazzes = PackageUtil.getClasses("com.randioo.majiang_collections_client.component");
-
         for (Class<?> clazz : clazzes) {
             if (StringUtils.isNullOrEmpty(clazz.getSimpleName())) {
                 continue;
@@ -50,14 +49,14 @@ public class majiang_collections_clientApp {
             UIComponent uiComponent = SpringContext.getBean(beanName);
             uiComponent.init();
         }
-
-       
-
+        
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ClientJFrame frame = SpringContext.getBean(ClientJFrame.class);
                 frame.setVisible(true);
             }
         });
+
     }
 }

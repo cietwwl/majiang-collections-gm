@@ -39,6 +39,7 @@ public class WanClient {
         // ExecutorFilter(Executors.newCachedThreadPool()));
         connector.setHandler(handler);
         this.inetSocketAddress = inetSocketAddress;
+
     }
 
     private IoSession getSession() {

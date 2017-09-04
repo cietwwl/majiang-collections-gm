@@ -15,6 +15,7 @@ public class HeartResponseAction implements IActionSupport {
 
     @Override
     public void execute(Object data, IoSession session) {
+        System.out.println(data);
         CSHeart csHeart = CSHeart.newBuilder().build();
         CS cs = CS.newBuilder().setCSHeart(csHeart).build();
         session.write(cs);

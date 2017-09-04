@@ -11,10 +11,11 @@ import com.randioo.randioo_server_base.template.IActionSupport;
 
 @PTAnnotation(SCHeart.class)
 @Controller
-public class SCHeartAction implements IActionSupport {
+public class ScHeartAction implements IActionSupport {
 
     @Override
     public void execute(Object data, IoSession session) {
+        System.out.println(data);
         HeartRequest request = HeartRequest.newBuilder().build();
         CS cs = CS.newBuilder().setHeartRequest(request).build();
         session.write(cs);
