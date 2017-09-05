@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.randioo.mahjong_public_server.protocol.ClientMessage.CS;
+import com.randioo.mahjong_public_server.protocol.Gm.GmGameInfoRequest;
 import com.randioo.majiang_collections_client.ClientJFrame;
 import com.randioo.majiang_collections_client.UIComponent;
 import com.randioo.majiang_collections_client.WanClient;
@@ -29,6 +31,7 @@ public class GameInfoGetter implements UIComponent {
     private JTextField role3Text;
     private JTextField role4Text;
     private JTextArea remainCardsText;
+    private JTextField gameLockText;
 
     @Override
     public void init() {
@@ -38,6 +41,7 @@ public class GameInfoGetter implements UIComponent {
         role3Text = UIUtils.get(clientJFrame, "role3Text");
         role4Text = UIUtils.get(clientJFrame, "role4Text");
         remainCardsText = UIUtils.get(clientJFrame, "remainCardsText");
+        gameLockText = UIUtils.get(clientJFrame, "gameLockText");
 
         JButton gameInfo = UIUtils.get(clientJFrame, "getGameInfoButton");
         gameInfo.addActionListener(new ActionListener() {
@@ -46,10 +50,9 @@ public class GameInfoGetter implements UIComponent {
             public void actionPerformed(ActionEvent e) {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        String value1 = role1Text.getText();
-                        String value2 = role2Text.getText();
-                        String value3 = role3Text.getText();
-                        String value4 = role4Text.getText();
+                        String roomId = gameLockText.getText();
+                        CS cs = CS.newBuilder().setGmGameInfoRequest(GmGameInfoRequest.newBuilder().setRoomId(roomId)).build();
+                        wanClient.send(cs);
                     }
                 });
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 import com.randioo.majiang_collections_client.UIComponent;
+import com.randioo.majiang_collections_client.utils.UIActionInterface;
 import com.randioo.randioo_server_base.annotation.PTAnnotation;
 import com.randioo.randioo_server_base.navigation.Navigation;
 import com.randioo.randioo_server_base.template.IActionSupport;
@@ -33,11 +34,14 @@ public class Navigater implements UIComponent {
 
             String beanName = StringUtils.firstStrToLowerCase(name);
 
-            IActionSupport entity = SpringContext.getBean(beanName);
+            UIActionInterface entity = SpringContext.getBean(beanName);
             PTAnnotation annotion = entity.getClass().getAnnotation(PTAnnotation.class);
             Class<?> sc = annotion.value();
             String scName = sc.getSimpleName();
             map.put(scName, entity);
+
+            entity.init();
+
         }
         field.setAccessible(false);
     }

@@ -12,9 +12,12 @@ public class ClientHandler extends GameServerHandlerAdapter {
     public void messageReceived(IoSession session, Object message) throws Exception {
         actionDispatcher((SC) message, session);
     }
-    
+
     @Override
     public void messageSent(IoSession session, Object message) throws Exception {
+        if (message.toString().contains("Heart")) {
+            return;
+        }
         System.out.println(message);
     }
 
