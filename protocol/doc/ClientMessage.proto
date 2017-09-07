@@ -40,14 +40,17 @@ message CS{
 	optional FightClientDispatchRequest FightClientDispatchRequest = 25;//客户端调试配牌
 	optional FightClientTouchCardRequest FightClientTouchCardRequest = 26;//客户端调试摸牌
 	optional FightConfirmGameOverRequest FightConfirmGameOverRequest = 27;//确认游戏结束
+	optional FightPreTingRequest FightPreTingRequest = 28;//点下听时 
 
-	optional SettingsRequest SettingsRequest = 28;
-	optional SettingsShowRequest SettingsShowRequest = 29;
+	optional SettingsRequest SettingsRequest = 29;
+	optional SettingsShowRequest SettingsShowRequest = 30;
 
-	optional RaceJoinRaceRequest RaceJoinRaceRequest = 30;
-	optional RaceShowQueueRequest RaceShowQueueRequest = 31;
+	optional RaceJoinRaceRequest RaceJoinRaceRequest = 31;
+	optional RaceShowQueueRequest RaceShowQueueRequest = 32;
 
-	optional GmEnvVarsRequest GmEnvVarsRequest = 32;
-	optional GmGameInfoRequest GmGameInfoRequest = 33;
-	optional GmDispatchCardRequest GmDispatchCardRequest = 34;
-} // 34
+	optional FightTingCheckResultRequest FightTingCheckResultRequest = 33;
+
+	optional GmEnvVarsRequest GmEnvVarsRequest = 34;
+	optional GmGameInfoRequest GmGameInfoRequest = 35;
+	optional GmDispatchCardRequest GmDispatchCardRequest = 36;
+} // 36

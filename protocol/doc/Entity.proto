@@ -37,6 +37,7 @@ message GameConfigData{
 	optional bool zhuaHu = 22;//能否抓胡
 	optional int32 moFlowerCount = 23; //几个花时才能自摸
 	optional int32 zhuaFlowerCount = 24;//几个花时才能抓胡
+	optional bool canChi =25; //能不能吃
 
 }
 
@@ -103,11 +104,16 @@ enum CardListType{
 	CARD_LIST_TYPE_GANG_LIGHT = 3;
 	CARD_LIST_TYPE_GANG_DARK = 4;
 	CARD_LIST_TYPE_GANG_ADD = 5;
+	CARD_LIST_TYPE_TING = 6;
 }
 
 message CallHuData{
 	optional int32 callId = 1;
 	optional RoundCardsData huData = 2;
+}
+message CallTingData{
+	optional int32 callId = 1;
+	repeated TingData tingData = 2;
 }
 enum HuType{
 	//共有
@@ -236,4 +242,9 @@ message EnvVarsData{
 	optional string key = 1;
 	optional string value = 2;
 	optional string type = 3;
+}
+
+message TingData{
+	optional int32 pai = 1;
+	repeated int32 tingPai = 2;
 }

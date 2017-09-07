@@ -26,21 +26,11 @@ public class GameInfoGetter implements UIComponent {
     @Autowired
     private WanClient wanClient;
 
-    private JTextField role1Text;
-    private JTextField role2Text;
-    private JTextField role3Text;
-    private JTextField role4Text;
-    private JTextArea remainCardsText;
     private JTextField gameLockText;
 
     @Override
     public void init() {
 
-        role1Text = UIUtils.get(clientJFrame, "role1Text");
-        role2Text = UIUtils.get(clientJFrame, "role2Text");
-        role3Text = UIUtils.get(clientJFrame, "role3Text");
-        role4Text = UIUtils.get(clientJFrame, "role4Text");
-        remainCardsText = UIUtils.get(clientJFrame, "remainCardsText");
         gameLockText = UIUtils.get(clientJFrame, "gameLockText");
 
         JButton gameInfo = UIUtils.get(clientJFrame, "getGameInfoButton");
@@ -51,7 +41,8 @@ public class GameInfoGetter implements UIComponent {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         String roomId = gameLockText.getText();
-                        CS cs = CS.newBuilder().setGmGameInfoRequest(GmGameInfoRequest.newBuilder().setRoomId(roomId)).build();
+                        CS cs = CS.newBuilder().setGmGameInfoRequest(GmGameInfoRequest.newBuilder().setRoomId(roomId))
+                                .build();
                         wanClient.send(cs);
                     }
                 });

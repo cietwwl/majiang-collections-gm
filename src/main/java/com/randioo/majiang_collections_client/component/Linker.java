@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.net.InetSocketAddress;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
@@ -36,12 +37,14 @@ public class Linker implements UIComponent {
 
     private JTextField host;
     private JTextField port;
+    private JLabel promptLabel;
 
     @Override
     public void init() {
         JButton linkButton = UIUtils.get(clientJFrame, "linkButton");
         host = UIUtils.get(clientJFrame, "hostText");
         port = UIUtils.get(clientJFrame, "portText");
+        promptLabel = UIUtils.get(clientJFrame, "promptLabel");
 
         linkButton.addActionListener(new ActionListener() {
 
@@ -60,11 +63,20 @@ public class Linker implements UIComponent {
                         String hostText = host.getText();
                         int portInt = Integer.parseInt(port.getText());
 
-                        InetSocketAddress address = new InetSocketAddress(hostText, portInt);
+                        promptLabel.setText("开始连接服务器");
 
-                        wanClient.startClient(
-                                new ProtocolCodecFilter(new ProtoCodecFactory(SC.getDefaultInstance(), null)),
-                                clientHandler, address, WanClientType.TCP);
+                        InetSocketAddress address = new InetSocketAddress(hostText, portInt);
+                        try {
+                            wanClient.startClient(new ProtocolCodecFilter(new ProtoCodecFactory(
+                                    SC.getDefaultInstance(), null)), clientHandler, address, WanClientType.TCP);
+
+                            promptLabel.setText("开始连接服务器");
+
+                        } catch (Exception e) {
+                            promptLabel.setText("连接服务器失败");
+                        }
+                        promptLabel.setText("连接服务器成功");
+
                         wanClient.send(CS.newBuilder().build());
                     }
                 });

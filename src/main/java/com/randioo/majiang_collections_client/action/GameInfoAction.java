@@ -26,10 +26,7 @@ import com.randioo.randioo_server_base.template.EntityRunnable;
 @PTAnnotation(GmGameInfoResponse.class)
 @Controller
 public class GameInfoAction extends UIAction {
-    private JTextField role1Text;
-    private JTextField role2Text;
-    private JTextField role3Text;
-    private JTextField role4Text;
+    private JTextArea roleTextArea;
     private JTextArea remainCardsText;
     private TableModel tableModel;
     private JLabel promptLabel;
@@ -39,10 +36,7 @@ public class GameInfoAction extends UIAction {
 
     @Override
     public void init() {
-        role1Text = UIUtils.get(clientJFrame, "role1Text");
-        role2Text = UIUtils.get(clientJFrame, "role2Text");
-        role3Text = UIUtils.get(clientJFrame, "role3Text");
-        role4Text = UIUtils.get(clientJFrame, "role4Text");
+        roleTextArea = UIUtils.get(clientJFrame, "roleTextArea");
         remainCardsText = UIUtils.get(clientJFrame, "remainCardsText");
         JTable table = UIUtils.get(clientJFrame, "jTable1");
         promptLabel = UIUtils.get(clientJFrame, "promptLabel");
@@ -62,11 +56,11 @@ public class GameInfoAction extends UIAction {
                     return;
                 }
                 List<ClientCard> list = response.getClientCardsList();
+
+                String clientCards = explain(list);
+                roleTextArea.setText(clientCards);
+
                 List<Integer> remainCards = response.getRemainCardsList();
-                role1Text.setText(array(list, 0));
-                role2Text.setText(array(list, 1));
-                role3Text.setText(array(list, 2));
-                role4Text.setText(array(list, 3));
                 remainCardsText.setText(array1(remainCards));
 
                 List<EnvVarsData> list1 = response.getEnvVarsDataList();
@@ -87,18 +81,31 @@ public class GameInfoAction extends UIAction {
                     tableModel.setValueAt(type, i, 2);
                 }
             }
+
         });
     }
 
-    private String array(List<ClientCard> cards, int index) {
+    public String explain(List<ClientCard> list) {
+        System.out.println("GameInfoAction.explain()");
+        StringBuilder sb = new StringBuilder();
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            ClientCard clientCard = list.get(i);
+            List<Integer> cards = clientCard.getCardsList();
+            int cardSize = cards.size();
+            for (int j = 0; j < cardSize; j++) {
+                sb.append(cards.get(j));
+                if (j < cardSize - 1) {
+                    sb.append(",");
+                }
+            }
 
-        if (cards.size() - 1 < index) {
-            return "";
+            if (i < size - 1) {
+                sb.append("\n");
+            }
         }
 
-        List<Integer> list = cards.get(index).getCardsList();
-        list.get(index);
-        return array1(list);
+        return sb.toString();
     }
 
     private String array1(List<Integer> list) {

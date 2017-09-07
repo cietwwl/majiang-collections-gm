@@ -80,8 +80,11 @@ message SC{
 	optional SCFightFlowerCount SCFightFlowerCount = 62;//杠 碰时花的计数改变
     optional SCFightFillFlower SCFightFillFlower = 63;//补花
 	optional SCFightTing SCFightTing = 64;//听
+	optional SCFightTingCheck SCFightTingCheck = 65;//检查可不可以听
+	optional FightTingCheckResultResponse FightTingCheckResultResponse = 66;
+	optional FightPreTingResponse FightPreTingResponse = 67;//收到听
 
-	optional GmEnvVarsResponse GmEnvVarsResponse = 65;
-	optional GmGameInfoResponse GmGameInfoResponse = 66;
-	optional GmDispatchCardResponse GmDispatchCardResponse = 67;
-} // 67
+	optional GmEnvVarsResponse GmEnvVarsResponse = 68;
+	optional GmGameInfoResponse GmGameInfoResponse = 69;
+	optional GmDispatchCardResponse GmDispatchCardResponse = 70;
+} // 70
