@@ -1,5 +1,6 @@
 package com.randioo.majiang_collections_client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.mina.core.session.IoSession;
@@ -40,6 +41,7 @@ public class majiang_collections_clientApp {
 
         SpringContext.initSpringCtx("ApplicationContext.xml");
         List<Class<?>> clazzes = PackageUtil.getClasses("com.randioo.majiang_collections_client.component");
+        List<UIComponent> comps = new ArrayList<>();
         for (Class<?> clazz : clazzes) {
             if (StringUtils.isNullOrEmpty(clazz.getSimpleName())) {
                 continue;
@@ -47,10 +49,14 @@ public class majiang_collections_clientApp {
             String value = clazz.getSimpleName();
             String beanName = StringUtils.firstStrToLowerCase(value);
             UIComponent uiComponent = SpringContext.getBean(beanName);
+            comps.add(uiComponent);
             uiComponent.init();
         }
-        
-        
+
+        for (UIComponent comp : comps) {
+            comp.onEnter();
+        }
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ClientJFrame frame = SpringContext.getBean(ClientJFrame.class);

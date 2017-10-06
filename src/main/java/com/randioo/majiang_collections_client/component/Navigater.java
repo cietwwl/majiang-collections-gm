@@ -46,4 +46,10 @@ public class Navigater implements UIComponent {
         field.setAccessible(false);
     }
 
+    @Override
+    public void onEnter() {
+        // TODO Auto-generated method stub
+
+    }
+
 }

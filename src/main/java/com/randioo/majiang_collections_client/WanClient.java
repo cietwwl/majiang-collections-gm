@@ -22,24 +22,34 @@ public class WanClient {
     private IoConnector connector = null;
     private InetSocketAddress inetSocketAddress = null;
 
-    public void startClient(IoFilter ioFilter, IoHandlerAdapter handler, InetSocketAddress inetSocketAddress,
+    public void startClient(IoHandlerAdapter handler, InetSocketAddress inetSocketAddress,
             WanClientType type) {
         switch (type) {
         case TCP:
-            tcp(ioFilter, handler, inetSocketAddress);
+            tcp(handler, inetSocketAddress);
             break;
         }
 
     }
 
-    public void tcp(IoFilter ioFilter, IoHandlerAdapter handler, InetSocketAddress inetSocketAddress) {
+    public void init(IoFilter ioFilter) {
         connector = new NioSocketConnector();
         connector.getFilterChain().addLast("codec", ioFilter);
+    }
+
+    public void tcp(IoHandlerAdapter handler, InetSocketAddress inetSocketAddress) {
+        
         // connector.getFilterChain().addLast("threadpool", new
         // ExecutorFilter(Executors.newCachedThreadPool()));
         connector.setHandler(handler);
         this.inetSocketAddress = inetSocketAddress;
+    }
 
+    public void disconnect() {
+        if (session != null) {
+            session.close(true);
+            session = null;
+        }
     }
 
     private IoSession getSession() {

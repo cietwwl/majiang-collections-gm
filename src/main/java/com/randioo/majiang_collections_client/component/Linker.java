@@ -38,6 +38,7 @@ public class Linker implements UIComponent {
     private JTextField host;
     private JTextField port;
     private JLabel promptLabel;
+    private ProtocolCodecFilter protocolCodecFilter;
 
     @Override
     public void init() {
@@ -45,6 +46,8 @@ public class Linker implements UIComponent {
         host = UIUtils.get(clientJFrame, "hostText");
         port = UIUtils.get(clientJFrame, "portText");
         promptLabel = UIUtils.get(clientJFrame, "promptLabel");
+        protocolCodecFilter = new ProtocolCodecFilter(new ProtoCodecFactory(SC.getDefaultInstance(), null));
+        wanClient.init(protocolCodecFilter);
 
         linkButton.addActionListener(new ActionListener() {
 
@@ -67,8 +70,8 @@ public class Linker implements UIComponent {
 
                         InetSocketAddress address = new InetSocketAddress(hostText, portInt);
                         try {
-                            wanClient.startClient(new ProtocolCodecFilter(new ProtoCodecFactory(
-                                    SC.getDefaultInstance(), null)), clientHandler, address, WanClientType.TCP);
+                            wanClient.disconnect();
+                            wanClient.startClient( clientHandler, address, WanClientType.TCP);
 
                             promptLabel.setText("开始连接服务器");
 
@@ -84,6 +87,12 @@ public class Linker implements UIComponent {
             }
 
         });
+    }
+    
+    @Override
+    public void onEnter() {
+        // TODO Auto-generated method stub
+        
     }
 
 }

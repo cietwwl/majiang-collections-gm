@@ -52,5 +52,11 @@ public class GameInfoGetter implements UIComponent {
         });
 
     }
+    
+    @Override
+    public void onEnter() {
+        // TODO Auto-generated method stub
+        
+    }
 
 }

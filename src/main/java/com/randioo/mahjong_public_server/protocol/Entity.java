@@ -3529,12 +3529,12 @@ public final class Entity {
     public boolean hasMoney() { return hasMoney; }
     public int getMoney() { return money_; }
     
-    // optional int32 point = 7;
-    public static final int POINT_FIELD_NUMBER = 7;
-    private boolean hasPoint;
-    private int point_ = 0;
-    public boolean hasPoint() { return hasPoint; }
-    public int getPoint() { return point_; }
+    // optional int32 score = 7;
+    public static final int SCORE_FIELD_NUMBER = 7;
+    private boolean hasScore;
+    private int score_ = 0;
+    public boolean hasScore() { return hasScore; }
+    public int getScore() { return score_; }
     
     // optional int32 sex = 8;
     public static final int SEX_FIELD_NUMBER = 8;
@@ -3564,6 +3564,34 @@ public final class Entity {
     public boolean hasFlower() { return hasFlower; }
     public int getFlower() { return flower_; }
     
+    // optional string ip = 12;
+    public static final int IP_FIELD_NUMBER = 12;
+    private boolean hasIp;
+    private java.lang.String ip_ = "";
+    public boolean hasIp() { return hasIp; }
+    public java.lang.String getIp() { return ip_; }
+    
+    // optional string account = 13;
+    public static final int ACCOUNT_FIELD_NUMBER = 13;
+    private boolean hasAccount;
+    private java.lang.String account_ = "";
+    public boolean hasAccount() { return hasAccount; }
+    public java.lang.String getAccount() { return account_; }
+    
+    // optional string latiLongi = 14;
+    public static final int LATILONGI_FIELD_NUMBER = 14;
+    private boolean hasLatiLongi;
+    private java.lang.String latiLongi_ = "";
+    public boolean hasLatiLongi() { return hasLatiLongi; }
+    public java.lang.String getLatiLongi() { return latiLongi_; }
+    
+    // optional string voiceId = 15;
+    public static final int VOICEID_FIELD_NUMBER = 15;
+    private boolean hasVoiceId;
+    private java.lang.String voiceId_ = "";
+    public boolean hasVoiceId() { return hasVoiceId; }
+    public java.lang.String getVoiceId() { return voiceId_; }
+    
     private void initFields() {
     }
     public final boolean isInitialized() {
@@ -3591,8 +3619,8 @@ public final class Entity {
       if (hasMoney()) {
         output.writeInt32(6, getMoney());
       }
-      if (hasPoint()) {
-        output.writeInt32(7, getPoint());
+      if (hasScore()) {
+        output.writeInt32(7, getScore());
       }
       if (hasSex()) {
         output.writeInt32(8, getSex());
@@ -3605,6 +3633,18 @@ public final class Entity {
       }
       if (hasFlower()) {
         output.writeInt32(11, getFlower());
+      }
+      if (hasIp()) {
+        output.writeString(12, getIp());
+      }
+      if (hasAccount()) {
+        output.writeString(13, getAccount());
+      }
+      if (hasLatiLongi()) {
+        output.writeString(14, getLatiLongi());
+      }
+      if (hasVoiceId()) {
+        output.writeString(15, getVoiceId());
       }
       getUnknownFields().writeTo(output);
     }
@@ -3639,9 +3679,9 @@ public final class Entity {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(6, getMoney());
       }
-      if (hasPoint()) {
+      if (hasScore()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, getPoint());
+          .computeInt32Size(7, getScore());
       }
       if (hasSex()) {
         size += com.google.protobuf.CodedOutputStream
@@ -3658,6 +3698,22 @@ public final class Entity {
       if (hasFlower()) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(11, getFlower());
+      }
+      if (hasIp()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(12, getIp());
+      }
+      if (hasAccount()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(13, getAccount());
+      }
+      if (hasLatiLongi()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(14, getLatiLongi());
+      }
+      if (hasVoiceId()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(15, getVoiceId());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3835,8 +3891,8 @@ public final class Entity {
         if (other.hasMoney()) {
           setMoney(other.getMoney());
         }
-        if (other.hasPoint()) {
-          setPoint(other.getPoint());
+        if (other.hasScore()) {
+          setScore(other.getScore());
         }
         if (other.hasSex()) {
           setSex(other.getSex());
@@ -3849,6 +3905,18 @@ public final class Entity {
         }
         if (other.hasFlower()) {
           setFlower(other.getFlower());
+        }
+        if (other.hasIp()) {
+          setIp(other.getIp());
+        }
+        if (other.hasAccount()) {
+          setAccount(other.getAccount());
+        }
+        if (other.hasLatiLongi()) {
+          setLatiLongi(other.getLatiLongi());
+        }
+        if (other.hasVoiceId()) {
+          setVoiceId(other.getVoiceId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3900,7 +3968,7 @@ public final class Entity {
               break;
             }
             case 56: {
-              setPoint(input.readInt32());
+              setScore(input.readInt32());
               break;
             }
             case 64: {
@@ -3917,6 +3985,22 @@ public final class Entity {
             }
             case 88: {
               setFlower(input.readInt32());
+              break;
+            }
+            case 98: {
+              setIp(input.readString());
+              break;
+            }
+            case 106: {
+              setAccount(input.readString());
+              break;
+            }
+            case 114: {
+              setLatiLongi(input.readString());
+              break;
+            }
+            case 122: {
+              setVoiceId(input.readString());
               break;
             }
           }
@@ -4041,21 +4125,21 @@ public final class Entity {
         return this;
       }
       
-      // optional int32 point = 7;
-      public boolean hasPoint() {
-        return result.hasPoint();
+      // optional int32 score = 7;
+      public boolean hasScore() {
+        return result.hasScore();
       }
-      public int getPoint() {
-        return result.getPoint();
+      public int getScore() {
+        return result.getScore();
       }
-      public Builder setPoint(int value) {
-        result.hasPoint = true;
-        result.point_ = value;
+      public Builder setScore(int value) {
+        result.hasScore = true;
+        result.score_ = value;
         return this;
       }
-      public Builder clearPoint() {
-        result.hasPoint = false;
-        result.point_ = 0;
+      public Builder clearScore() {
+        result.hasScore = false;
+        result.score_ = 0;
         return this;
       }
       
@@ -4131,6 +4215,90 @@ public final class Entity {
       public Builder clearFlower() {
         result.hasFlower = false;
         result.flower_ = 0;
+        return this;
+      }
+      
+      // optional string ip = 12;
+      public boolean hasIp() {
+        return result.hasIp();
+      }
+      public java.lang.String getIp() {
+        return result.getIp();
+      }
+      public Builder setIp(java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  result.hasIp = true;
+        result.ip_ = value;
+        return this;
+      }
+      public Builder clearIp() {
+        result.hasIp = false;
+        result.ip_ = getDefaultInstance().getIp();
+        return this;
+      }
+      
+      // optional string account = 13;
+      public boolean hasAccount() {
+        return result.hasAccount();
+      }
+      public java.lang.String getAccount() {
+        return result.getAccount();
+      }
+      public Builder setAccount(java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  result.hasAccount = true;
+        result.account_ = value;
+        return this;
+      }
+      public Builder clearAccount() {
+        result.hasAccount = false;
+        result.account_ = getDefaultInstance().getAccount();
+        return this;
+      }
+      
+      // optional string latiLongi = 14;
+      public boolean hasLatiLongi() {
+        return result.hasLatiLongi();
+      }
+      public java.lang.String getLatiLongi() {
+        return result.getLatiLongi();
+      }
+      public Builder setLatiLongi(java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  result.hasLatiLongi = true;
+        result.latiLongi_ = value;
+        return this;
+      }
+      public Builder clearLatiLongi() {
+        result.hasLatiLongi = false;
+        result.latiLongi_ = getDefaultInstance().getLatiLongi();
+        return this;
+      }
+      
+      // optional string voiceId = 15;
+      public boolean hasVoiceId() {
+        return result.hasVoiceId();
+      }
+      public java.lang.String getVoiceId() {
+        return result.getVoiceId();
+      }
+      public Builder setVoiceId(java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  result.hasVoiceId = true;
+        result.voiceId_ = value;
+        return this;
+      }
+      public Builder clearVoiceId() {
+        result.hasVoiceId = false;
+        result.voiceId_ = getDefaultInstance().getVoiceId();
         return this;
       }
       
@@ -11519,89 +11687,91 @@ public final class Entity {
       "\022\027\n\017zhuaFlowerCount\030\030 \001(\005\022\016\n\006canChi\030\031 \001(",
       "\010\"#\n\006PaiNum\022\014\n\004seat\030\001 \001(\005\022\013\n\003num\030\003 \001(\005\"(" +
       "\n\tScoreData\022\014\n\004seat\030\001 \001(\005\022\r\n\005score\030\002 \001(\005" +
-      "\"#\n\006Record\022\014\n\004seat\030\001 \001(\005\022\013\n\003pai\030\002 \003(\005\"\304\001" +
+      "\"#\n\006Record\022\014\n\004seat\030\001 \001(\005\022\013\n\003pai\030\002 \003(\005\"\205\002" +
       "\n\014GameRoleData\022\022\n\ngameRoleId\030\001 \001(\t\022\014\n\004na" +
       "me\030\002 \001(\t\022\014\n\004seat\030\003 \001(\005\022\r\n\005ready\030\004 \001(\010\022\022\n" +
-      "\nheadImgUrl\030\005 \001(\t\022\r\n\005money\030\006 \001(\005\022\r\n\005poin" +
-      "t\030\007 \001(\005\022\013\n\003sex\030\010 \001(\005\022\016\n\006online\030\t \001(\010\022\026\n\016" +
-      "platformRoleId\030\n \001(\t\022\016\n\006flower\030\013 \001(\005\"r\n\020" +
-      "CallCardListData\022\016\n\006callId\030\001 \001(\005\022N\n\014card" +
-      "ListData\030\002 \001(\01328.com.randioo.mahjong_pub",
-      "lic_server.protocol.CardListData\"\224\001\n\014Car" +
-      "dListData\022N\n\014cardListType\030\001 \001(\01628.com.ra" +
-      "ndioo.mahjong_public_server.protocol.Car" +
-      "dListType\022\014\n\004card\030\002 \001(\005\022\022\n\ntargetSeat\030\003 " +
-      "\001(\005\022\022\n\ntargetCard\030\004 \001(\005\"h\n\nCallHuData\022\016\n" +
-      "\006callId\030\001 \001(\005\022J\n\006huData\030\002 \001(\0132:.com.rand" +
-      "ioo.mahjong_public_server.protocol.Round" +
-      "CardsData\"f\n\014CallTingData\022\016\n\006callId\030\001 \001(" +
-      "\005\022F\n\010tingData\030\002 \003(\01324.com.randioo.mahjon" +
-      "g_public_server.protocol.TingData\"\337\006\n\025Ro",
-      "leRoundOverInfoData\022N\n\014gameRoleData\030\001 \001(" +
-      "\01328.com.randioo.mahjong_public_server.pr" +
-      "otocol.GameRoleData\022R\n\016roundCardsData\030\002 " +
-      "\001(\0132:.com.randioo.mahjong_public_server." +
-      "protocol.RoundCardsData\022J\n\noverMethod\030\003 " +
-      "\001(\01626.com.randioo.mahjong_public_server." +
-      "protocol.OverMethod\022\022\n\nroundScore\030\004 \001(\005\022" +
-      "\021\n\tbaseScore\030\005 \001(\005\022\023\n\013flowerCount\030\006 \001(\005\022" +
-      "F\n\nhuTypeList\030\007 \003(\01622.com.randioo.mahjon" +
-      "g_public_server.protocol.HuType\022\031\n\021mingG",
-      "angScorePlus\030\010 \001(\005\022\031\n\021mingGangCountPlus\030" +
-      "\t \001(\005\022\032\n\022mingGangScoreMinus\030\n \001(\005\022\032\n\022min" +
-      "gGangCountMinus\030\013 \001(\005\022\027\n\017anGangScorePlus" +
-      "\030\014 \001(\005\022\027\n\017anGangCountPlus\030\r \001(\005\022\030\n\020anGan" +
-      "gScoreMinus\030\016 \001(\005\022\030\n\020anGangCountMinus\030\017 " +
-      "\001(\005\022\027\n\017buGangScorePlus\030\020 \001(\005\022\027\n\017buGangCo" +
-      "untPlus\030\021 \001(\005\022\030\n\020buGangScoreMinus\030\022 \001(\005\022" +
-      "\030\n\020buGangCountMinus\030\023 \001(\005\022\021\n\tziMoScore\030\024" +
-      " \001(\005\022\023\n\013zhuaHuScore\030\025 \001(\005\022\026\n\016qiangGangSc" +
-      "ore\030\026 \001(\005\022\025\n\rchuChongScore\030\027 \001(\005\022\026\n\016gang",
-      "ChongScore\030\030 \001(\005\022\022\n\nzhaMaScore\030\031 \001(\005\022\025\n\r" +
-      "cangYingScore\030\032 \001(\005\"\242\002\n\024RoleGameOverInfo" +
+      "\nheadImgUrl\030\005 \001(\t\022\r\n\005money\030\006 \001(\005\022\r\n\005scor" +
+      "e\030\007 \001(\005\022\013\n\003sex\030\010 \001(\005\022\016\n\006online\030\t \001(\010\022\026\n\016" +
+      "platformRoleId\030\n \001(\t\022\016\n\006flower\030\013 \001(\005\022\n\n\002" +
+      "ip\030\014 \001(\t\022\017\n\007account\030\r \001(\t\022\021\n\tlatiLongi\030\016" +
+      " \001(\t\022\017\n\007voiceId\030\017 \001(\t\"r\n\020CallCardListDat",
+      "a\022\016\n\006callId\030\001 \001(\005\022N\n\014cardListData\030\002 \001(\0132" +
+      "8.com.randioo.mahjong_public_server.prot" +
+      "ocol.CardListData\"\224\001\n\014CardListData\022N\n\014ca" +
+      "rdListType\030\001 \001(\01628.com.randioo.mahjong_p" +
+      "ublic_server.protocol.CardListType\022\014\n\004ca" +
+      "rd\030\002 \001(\005\022\022\n\ntargetSeat\030\003 \001(\005\022\022\n\ntargetCa" +
+      "rd\030\004 \001(\005\"h\n\nCallHuData\022\016\n\006callId\030\001 \001(\005\022J" +
+      "\n\006huData\030\002 \001(\0132:.com.randioo.mahjong_pub" +
+      "lic_server.protocol.RoundCardsData\"f\n\014Ca" +
+      "llTingData\022\016\n\006callId\030\001 \001(\005\022F\n\010tingData\030\002",
+      " \003(\01324.com.randioo.mahjong_public_server" +
+      ".protocol.TingData\"\337\006\n\025RoleRoundOverInfo" +
       "Data\022N\n\014gameRoleData\030\001 \001(\01328.com.randioo" +
       ".mahjong_public_server.protocol.GameRole" +
-      "Data\022\017\n\007huCount\030\002 \001(\005\022\021\n\tmoHuCount\030\003 \001(\005" +
-      "\022\023\n\013zhuaHuCount\030\004 \001(\005\022\026\n\016dianChongCount\030" +
-      "\005 \001(\005\022\021\n\tgameScore\030\006 \001(\005\022\025\n\rmingGangScor" +
-      "e\030\007 \001(\005\022\025\n\rmingGangCount\030\010 \001(\005\022\023\n\013anGang" +
-      "Score\030\t \001(\005\022\023\n\013anGangCount\030\n \001(\005\"\272\001\n\016Rou" +
-      "ndCardsData\022\016\n\006huCard\030\001 \001(\005\022\021\n\thandCards",
-      "\030\002 \003(\005\022\021\n\ttouchCard\030\003 \001(\005\022\022\n\ntargetSeat\030" +
-      "\004 \001(\005\022N\n\014cardListData\030\005 \003(\01328.com.randio" +
-      "o.mahjong_public_server.protocol.CardLis" +
-      "tData\022\016\n\006flower\030\006 \003(\005\"\033\n\014RecommandPai\022\013\n" +
-      "\003pai\030\001 \003(\005\"j\n\010GameData\022\016\n\006roomId\030\001 \001(\t\022N" +
-      "\n\014gameRoleData\030\002 \003(\01328.com.randioo.mahjo" +
-      "ng_public_server.protocol.GameRoleData\"+" +
-      "\n\014AudienceData\022\014\n\004name\030\001 \001(\t\022\r\n\005score\030\002 " +
-      "\001(\005\"\034\n\016RoundVideoData\022\n\n\002sc\030\001 \003(\014\"c\n\rGam" +
-      "eVideoData\022R\n\016roundVideoData\030\001 \003(\0132:.com",
-      ".randioo.mahjong_public_server.protocol." +
-      "RoundVideoData\"/\n\022FightStartRoleData\022\013\n\003" +
-      "pai\030\001 \003(\005\022\014\n\004seat\030\002 \001(\005\"\033\n\nClientCard\022\r\n" +
-      "\005cards\030\001 \003(\005\"7\n\013EnvVarsData\022\013\n\003key\030\001 \001(\t" +
-      "\022\r\n\005value\030\002 \001(\t\022\014\n\004type\030\003 \001(\t\"(\n\010TingDat" +
-      "a\022\013\n\003pai\030\001 \001(\005\022\017\n\007tingPai\030\002 \003(\005*9\n\016GameO" +
-      "verMethod\022\022\n\016GAME_OVER_TIME\020\001\022\023\n\017GAME_OV" +
-      "ER_ROUND\020\002*5\n\010GameType\022\023\n\017GAME_TYPE_MATC" +
-      "H\020\001\022\024\n\020GAME_TYPE_FRIEND\020\002*M\n\tGameState\022\026" +
-      "\n\022GAME_STATE_PREPARE\020\001\022\024\n\020GAME_START_STA",
-      "RT\020\002\022\022\n\016GAME_START_END\020\003*\262\001\n\014CardListTyp" +
-      "e\022\026\n\022CARD_LIST_TYPE_CHI\020\001\022\027\n\023CARD_LIST_T" +
-      "YPE_PENG\020\002\022\035\n\031CARD_LIST_TYPE_GANG_LIGHT\020" +
-      "\003\022\034\n\030CARD_LIST_TYPE_GANG_DARK\020\004\022\033\n\027CARD_" +
-      "LIST_TYPE_GANG_ADD\020\005\022\027\n\023CARD_LIST_TYPE_T" +
-      "ING\020\006*\337\001\n\006HuType\022\014\n\010GANG_KAI\020\001\022\014\n\010MEN_QI" +
-      "NG\020\002\022\017\n\013DA_DIAO_CHE\020\003\022\r\n\tSI_BAI_DA\020\004\022\r\n\t" +
-      "WU_BAI_DA\020\005\022\016\n\nPAO_DAI_DA\020\006\022\r\n\tQING_PENG" +
-      "\020\007\022\014\n\010HUN_PENG\020\010\022\016\n\nQING_YI_SE\020\t\022\020\n\014PENG" +
-      "_PENG_HU\020\n\022\r\n\tHUN_YI_SE\020\013\022\016\n\nWU_HUA_GUO\020",
-      "\014\022\016\n\nHAI_DI_LAO\020\r\022\014\n\010LA_JI_HU\020\016*]\n\nOverM" +
-      "ethod\022\010\n\004LOSS\020\000\022\r\n\tCHU_CHONG\020\001\022\016\n\nGANG_C" +
-      "HONG\020\002\022\t\n\005MO_HU\020\003\022\013\n\007ZHUA_HU\020\004\022\016\n\nQIANG_" +
-      "GANG\020\005*D\n\022FightVoteApplyExit\022\r\n\tVOTE_IDL" +
-      "E\020\000\022\016\n\nVOTE_AGREE\020\001\022\017\n\013VOTE_REJECT\020\002"
+      "Data\022R\n\016roundCardsData\030\002 \001(\0132:.com.randi" +
+      "oo.mahjong_public_server.protocol.RoundC" +
+      "ardsData\022J\n\noverMethod\030\003 \001(\01626.com.randi" +
+      "oo.mahjong_public_server.protocol.OverMe" +
+      "thod\022\022\n\nroundScore\030\004 \001(\005\022\021\n\tbaseScore\030\005 " +
+      "\001(\005\022\023\n\013flowerCount\030\006 \001(\005\022F\n\nhuTypeList\030\007",
+      " \003(\01622.com.randioo.mahjong_public_server" +
+      ".protocol.HuType\022\031\n\021mingGangScorePlus\030\010 " +
+      "\001(\005\022\031\n\021mingGangCountPlus\030\t \001(\005\022\032\n\022mingGa" +
+      "ngScoreMinus\030\n \001(\005\022\032\n\022mingGangCountMinus" +
+      "\030\013 \001(\005\022\027\n\017anGangScorePlus\030\014 \001(\005\022\027\n\017anGan" +
+      "gCountPlus\030\r \001(\005\022\030\n\020anGangScoreMinus\030\016 \001" +
+      "(\005\022\030\n\020anGangCountMinus\030\017 \001(\005\022\027\n\017buGangSc" +
+      "orePlus\030\020 \001(\005\022\027\n\017buGangCountPlus\030\021 \001(\005\022\030" +
+      "\n\020buGangScoreMinus\030\022 \001(\005\022\030\n\020buGangCountM" +
+      "inus\030\023 \001(\005\022\021\n\tziMoScore\030\024 \001(\005\022\023\n\013zhuaHuS",
+      "core\030\025 \001(\005\022\026\n\016qiangGangScore\030\026 \001(\005\022\025\n\rch" +
+      "uChongScore\030\027 \001(\005\022\026\n\016gangChongScore\030\030 \001(" +
+      "\005\022\022\n\nzhaMaScore\030\031 \001(\005\022\025\n\rcangYingScore\030\032" +
+      " \001(\005\"\242\002\n\024RoleGameOverInfoData\022N\n\014gameRol" +
+      "eData\030\001 \001(\01328.com.randioo.mahjong_public" +
+      "_server.protocol.GameRoleData\022\017\n\007huCount" +
+      "\030\002 \001(\005\022\021\n\tmoHuCount\030\003 \001(\005\022\023\n\013zhuaHuCount" +
+      "\030\004 \001(\005\022\026\n\016dianChongCount\030\005 \001(\005\022\021\n\tgameSc" +
+      "ore\030\006 \001(\005\022\025\n\rmingGangScore\030\007 \001(\005\022\025\n\rming" +
+      "GangCount\030\010 \001(\005\022\023\n\013anGangScore\030\t \001(\005\022\023\n\013",
+      "anGangCount\030\n \001(\005\"\272\001\n\016RoundCardsData\022\016\n\006" +
+      "huCard\030\001 \001(\005\022\021\n\thandCards\030\002 \003(\005\022\021\n\ttouch" +
+      "Card\030\003 \001(\005\022\022\n\ntargetSeat\030\004 \001(\005\022N\n\014cardLi" +
+      "stData\030\005 \003(\01328.com.randioo.mahjong_publi" +
+      "c_server.protocol.CardListData\022\016\n\006flower" +
+      "\030\006 \003(\005\"\033\n\014RecommandPai\022\013\n\003pai\030\001 \003(\005\"j\n\010G" +
+      "ameData\022\016\n\006roomId\030\001 \001(\t\022N\n\014gameRoleData\030" +
+      "\002 \003(\01328.com.randioo.mahjong_public_serve" +
+      "r.protocol.GameRoleData\"+\n\014AudienceData\022" +
+      "\014\n\004name\030\001 \001(\t\022\r\n\005score\030\002 \001(\005\"\034\n\016RoundVid",
+      "eoData\022\n\n\002sc\030\001 \003(\014\"c\n\rGameVideoData\022R\n\016r" +
+      "oundVideoData\030\001 \003(\0132:.com.randioo.mahjon" +
+      "g_public_server.protocol.RoundVideoData\"" +
+      "/\n\022FightStartRoleData\022\013\n\003pai\030\001 \003(\005\022\014\n\004se" +
+      "at\030\002 \001(\005\"\033\n\nClientCard\022\r\n\005cards\030\001 \003(\005\"7\n" +
+      "\013EnvVarsData\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t" +
+      "\022\014\n\004type\030\003 \001(\t\"(\n\010TingData\022\013\n\003pai\030\001 \001(\005\022" +
+      "\017\n\007tingPai\030\002 \003(\005*9\n\016GameOverMethod\022\022\n\016GA" +
+      "ME_OVER_TIME\020\001\022\023\n\017GAME_OVER_ROUND\020\002*5\n\010G" +
+      "ameType\022\023\n\017GAME_TYPE_MATCH\020\001\022\024\n\020GAME_TYP",
+      "E_FRIEND\020\002*M\n\tGameState\022\026\n\022GAME_STATE_PR" +
+      "EPARE\020\001\022\024\n\020GAME_START_START\020\002\022\022\n\016GAME_ST" +
+      "ART_END\020\003*\262\001\n\014CardListType\022\026\n\022CARD_LIST_" +
+      "TYPE_CHI\020\001\022\027\n\023CARD_LIST_TYPE_PENG\020\002\022\035\n\031C" +
+      "ARD_LIST_TYPE_GANG_LIGHT\020\003\022\034\n\030CARD_LIST_" +
+      "TYPE_GANG_DARK\020\004\022\033\n\027CARD_LIST_TYPE_GANG_" +
+      "ADD\020\005\022\027\n\023CARD_LIST_TYPE_TING\020\006*\337\001\n\006HuTyp" +
+      "e\022\014\n\010GANG_KAI\020\001\022\014\n\010MEN_QING\020\002\022\017\n\013DA_DIAO" +
+      "_CHE\020\003\022\r\n\tSI_BAI_DA\020\004\022\r\n\tWU_BAI_DA\020\005\022\016\n\n" +
+      "PAO_DAI_DA\020\006\022\r\n\tQING_PENG\020\007\022\014\n\010HUN_PENG\020",
+      "\010\022\016\n\nQING_YI_SE\020\t\022\020\n\014PENG_PENG_HU\020\n\022\r\n\tH" +
+      "UN_YI_SE\020\013\022\016\n\nWU_HUA_GUO\020\014\022\016\n\nHAI_DI_LAO" +
+      "\020\r\022\014\n\010LA_JI_HU\020\016*]\n\nOverMethod\022\010\n\004LOSS\020\000" +
+      "\022\r\n\tCHU_CHONG\020\001\022\016\n\nGANG_CHONG\020\002\022\t\n\005MO_HU" +
+      "\020\003\022\013\n\007ZHUA_HU\020\004\022\016\n\nQIANG_GANG\020\005*D\n\022Fight" +
+      "VoteApplyExit\022\r\n\tVOTE_IDLE\020\000\022\016\n\nVOTE_AGR" +
+      "EE\020\001\022\017\n\013VOTE_REJECT\020\002"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -11653,7 +11823,7 @@ public final class Entity {
           internal_static_com_randioo_mahjong_public_server_protocol_GameRoleData_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_randioo_mahjong_public_server_protocol_GameRoleData_descriptor,
-              new java.lang.String[] { "GameRoleId", "Name", "Seat", "Ready", "HeadImgUrl", "Money", "Point", "Sex", "Online", "PlatformRoleId", "Flower", },
+              new java.lang.String[] { "GameRoleId", "Name", "Seat", "Ready", "HeadImgUrl", "Money", "Score", "Sex", "Online", "PlatformRoleId", "Flower", "Ip", "Account", "LatiLongi", "VoiceId", },
               com.randioo.mahjong_public_server.protocol.Entity.GameRoleData.class,
               com.randioo.mahjong_public_server.protocol.Entity.GameRoleData.Builder.class);
           internal_static_com_randioo_mahjong_public_server_protocol_CallCardListData_descriptor =

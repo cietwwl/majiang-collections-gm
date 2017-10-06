@@ -1,8 +1,10 @@
 package com.randioo.majiang_collections_client.action;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -31,6 +33,12 @@ public class GameInfoAction extends UIAction {
     private TableModel tableModel;
     private JLabel promptLabel;
 
+    private JButton cardLockButton;
+
+    private JButton configLockButton;
+
+    private Color cardLockColor;
+    private Color configLockColor;
     @Autowired
     private ClientJFrame clientJFrame;
 
@@ -41,6 +49,14 @@ public class GameInfoAction extends UIAction {
         JTable table = UIUtils.get(clientJFrame, "jTable1");
         promptLabel = UIUtils.get(clientJFrame, "promptLabel");
         tableModel = table.getModel();
+
+        cardLockButton = UIUtils.get(clientJFrame, "cardLockButton");
+        configLockButton = UIUtils.get(clientJFrame, "configLockButton");
+        Color color1 = cardLockButton.getBackground();
+        cardLockColor = new Color(color1.getRed(), color1.getGreen(), color1.getBlue());
+
+        Color color2 = configLockButton.getBackground();
+        configLockColor = new Color(color2.getRed(), color2.getGreen(), color2.getBlue());
     }
 
     @Override
@@ -57,28 +73,32 @@ public class GameInfoAction extends UIAction {
                 }
                 List<ClientCard> list = response.getClientCardsList();
 
-                String clientCards = explain(list);
-                roleTextArea.setText(clientCards);
+                if (cardLockButton.getBackground().equals(cardLockColor)) {
+                    String clientCards = explain(list);
+                    roleTextArea.setText(clientCards);
 
-                List<Integer> remainCards = response.getRemainCardsList();
-                remainCardsText.setText(array1(remainCards));
+                    List<Integer> remainCards = response.getRemainCardsList();
+                    remainCardsText.setText(array1(remainCards));
+                }
 
-                List<EnvVarsData> list1 = response.getEnvVarsDataList();
-                int rowCount = tableModel.getRowCount();
-                for (int i = 0; i < rowCount; i++) {
-                    String key = "";
-                    String value = "";
-                    String type = "";
-                    if (list1.size() > i) {
-                        EnvVarsData envVarsData = list1.get(i);
-                        key = envVarsData.getKey();
-                        value = envVarsData.getValue();
-                        type = envVarsData.getType();
+                if (configLockButton.getBackground().equals(configLockColor)) {
+                    List<EnvVarsData> list1 = response.getEnvVarsDataList();
+                    int rowCount = tableModel.getRowCount();
+                    for (int i = 0; i < rowCount; i++) {
+                        String key = "";
+                        String value = "";
+                        String type = "";
+                        if (list1.size() > i) {
+                            EnvVarsData envVarsData = list1.get(i);
+                            key = envVarsData.getKey();
+                            value = envVarsData.getValue();
+                            type = envVarsData.getType();
+                        }
+
+                        tableModel.setValueAt(key, i, 0);
+                        tableModel.setValueAt(value, i, 1);
+                        tableModel.setValueAt(type, i, 2);
                     }
-
-                    tableModel.setValueAt(key, i, 0);
-                    tableModel.setValueAt(value, i, 1);
-                    tableModel.setValueAt(type, i, 2);
                 }
             }
 

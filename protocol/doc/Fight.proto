@@ -41,6 +41,8 @@ message SCFightApplyExitGame{//
 	optional string name = 1;
 	optional int32 countDown = 2;
 	optional int32 applyExitId = 3;
+	optional int32 seat = 4;
+	optional int32 startTime = 5;
 }
 
 message FightAgreeExitGameRequest{//
@@ -128,17 +130,28 @@ message SCFightGameOver{
 
 message SCFightNoticeSendCard{
 	optional int32 seat = 1;
+	optional int32 banCard = 2;//禁止出的牌
 }
 
 message FightSendCardRequest{
 	optional int32 card = 1;
 	optional bool isTouchCard = 2[default=false];
-	repeated int32 tingCards = 3;//听牌数组
 }
 
 message FightSendCardResponse{//
 	optional int32 errorCode = 1 [default = 1];
 }
+
+message FightSendTingCardRequest{
+	optional int32 card = 1;
+	optional bool isTouchCard = 2[default=false];
+	repeated int32 tingCards = 3;//听牌数组
+}
+
+message FightSendTingCardResponse{//
+	optional int32 errorCode = 1 [default = 1];
+}
+
 message SCFightSendCard{
 	optional int32 card = 1;
 	optional int32 seat = 2;
@@ -297,4 +310,14 @@ message FightPreTingResponse{
 message FightPreTingRequest{
 	optional int32 tempGameCount = 1;
 	optional int32 callCardListId = 2;
+}
+
+message SCFightNoticeAgreeExit{
+	optional int32 seat = 1;
+	optional FightVoteApplyExit fightVoteApplyExit = 2;
+}
+
+//主推掷骰子
+message SCFightCastDices{
+	repeated int32 dices = 1;
 }

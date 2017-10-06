@@ -7,15 +7,13 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.randioo.mahjong_public_server.protocol.ClientMessage.CS;
-import com.randioo.mahjong_public_server.protocol.Entity.ClientCard;
-import com.randioo.mahjong_public_server.protocol.Gm.GmDispatchCardRequest;
+import com.randioo.mahjong_public_server.protocol.Gm.GmRoundRequest;
 import com.randioo.majiang_collections_client.ClientJFrame;
 import com.randioo.majiang_collections_client.UIComponent;
 import com.randioo.majiang_collections_client.WanClient;
@@ -23,29 +21,25 @@ import com.randioo.majiang_collections_client.utils.UIUtils;
 import com.randioo.randioo_server_base.utils.StringUtils;
 
 @Component
-public class CardDispatcher implements UIComponent {
+public class RoundSumbit implements UIComponent {
 
     @Autowired
     private ClientJFrame clientJFrame;
 
+    private JTextField remainRoundCountText;
+
     private JLabel promptLabel;
 
     private JTextField gameLockText;
-    private JTextArea roleTextArea;
-    private JTextArea remainCardsText;
-    private JTextField remainCardCountText;
 
     @Autowired
     private WanClient wanClient;
 
     @Override
     public void init() {
-        JButton jButton = UIUtils.get(clientJFrame, "submitGameCardsButton");
+        JButton jButton = UIUtils.get(clientJFrame, "submitRoundButton");
         promptLabel = UIUtils.get(clientJFrame, "promptLabel");
         gameLockText = UIUtils.get(clientJFrame, "gameLockText");
-        roleTextArea = UIUtils.get(clientJFrame, "roleTextArea");
-        remainCardsText = UIUtils.get(clientJFrame, "remainCardsText");
-        remainCardCountText = UIUtils.get(clientJFrame, "remainCardCountText");
 
         jButton.addActionListener(new ActionListener() {
 
@@ -54,41 +48,28 @@ public class CardDispatcher implements UIComponent {
 
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        promptLabel.setText("正在提交卡牌");
+                        promptLabel.setText("正在提交剩余局数");
                     }
                 });
 
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        String roomId = gameLockText.getText();
 
-                        String roleCards = roleTextArea.getText();
-                        boolean remainCardBoolean = !StringUtils.isNullOrEmpty(remainCardCountText.getText());
-                        int remainCardCount = remainCardBoolean ? Integer
-                                .parseInt(remainCardCountText.getText().trim()) : 0;
+                        String roundCountStr = remainRoundCountText.getText();
                         try {
-                            List<List<Integer>> lists = explainString2Cards(roleCards);
-                            System.out.println(lists);
-                            List<Integer> remainCards = getCards(remainCardsText.getText());
-
-                            GmDispatchCardRequest.Builder request = GmDispatchCardRequest.newBuilder()
-                                    .setRoomId(roomId);
-                            
-                            request.setRemainCardBoolean(remainCardBoolean);
-                            request.setRemainCardCount(remainCardCount);
-
-                            for (List<Integer> list : lists) {
-                                request.addClientCards(ClientCard.newBuilder().addAllCards(list));
-                            }
-                            request.addAllRemainCards(remainCards);
-                            CS cs = CS.newBuilder().setGmDispatchCardRequest(request).build();
+                            int roundCount = Integer.parseInt(roundCountStr);
+                            String roomId = gameLockText.getText();
+                            GmRoundRequest request = GmRoundRequest.newBuilder().setRoomId(roomId)
+                                    .setRemainRound(roundCount).build();
+                            CS cs = CS.newBuilder().setGmRoundRequest(request).build();
                             try {
                                 wanClient.send(cs);
                             } catch (Exception e) {
                                 promptLabel.setText("服务器断开");
                             }
+
                         } catch (Exception e) {
-                            promptLabel.setText("玩家出牌格式化失败");
+                            promptLabel.setText("局数格式错误");
                         }
 
                     }
